@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entidades\Clientes\" />
     <Folder Include="Entidades\Inventario\" />
     <Folder Include="Entidades\Configuracion\" />
     <Folder Include="Entidades\Sistema\" />
