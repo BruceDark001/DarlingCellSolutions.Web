@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using DarlingCellSolutions.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -15,6 +16,12 @@ namespace DarlingCellSolutions.Web.Controllers
 
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetInt32("UsuarioId") == null)
+                return RedirectToAction("Index", "Login");
+
+            ViewBag.Usuario = HttpContext.Session.GetString("Nombre");
+            ViewBag.Rol = HttpContext.Session.GetString("Rol");
+
             return View();
         }
 

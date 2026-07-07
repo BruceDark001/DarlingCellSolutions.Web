@@ -1,4 +1,6 @@
-﻿using DarlingCellSolutions.Infrastructure.Persistencia.Contexto;
+﻿using DarlingCellSolutions.Application.Interfaces;
+using DarlingCellSolutions.Infrastructure.Persistencia.Repositorios.Seguridad;
+using DarlingCellSolutions.Infrastructure.Persistencia.Contexto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +18,8 @@ public static class DependencyInjection
             options.UseSqlServer(
                 configuration.GetConnectionString("DefaultConnection"));
         });
+
+        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
         return services;
     }
