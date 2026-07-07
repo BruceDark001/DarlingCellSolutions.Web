@@ -22,4 +22,7 @@ public class Venta : EntidadBase
     public decimal Total { get; set; }
 
     public DateTime FechaVenta { get; set; } = DateTime.Now;
+
+    // NUEVO
+    public ICollection<DetalleVenta> Detalles { get; set; } = new List<DetalleVenta>();
 }

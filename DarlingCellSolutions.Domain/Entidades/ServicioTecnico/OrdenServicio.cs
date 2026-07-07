@@ -1,6 +1,11 @@
-﻿using DarlingCellSolutions.Domain.Entidades.Base;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using DarlingCellSolutions.Domain.Entidades.Base;
+using DarlingCellSolutions.Domain.Entidades.Clientes;
+using DarlingCellSolutions.Domain.Entidades.Seguridad;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace DarlingCellSolutions.Domain.Entidades.ServicioTecnico;
+
 public class OrdenServicio : EntidadBase
 {
     public int Id { get; set; }
@@ -30,8 +35,25 @@ public class OrdenServicio : EntidadBase
     public DateTime FechaIngreso { get; set; }
 
     public DateTime? FechaEntregaEstimada { get; set; }
-
     public DateTime? FechaEntregaReal { get; set; }
 
     public string? Observaciones { get; set; }
+
+    // Relaciones
+
+    [ValidateNever]
+    [NotMapped]
+    public Cliente? Cliente { get; set; }
+
+    [ValidateNever]
+    [NotMapped]
+    public Equipo? Equipo { get; set; }
+
+    [ValidateNever]
+    [NotMapped]
+    public Usuario? Tecnico { get; set; }
+
+    [ValidateNever]
+    [NotMapped]
+    public EstadoReparacion? EstadoReparacion { get; set; }
 }

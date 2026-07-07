@@ -1,0 +1,103 @@
+﻿@model DarlingCellSolutions.Web.Models.OrdenServicioViewModel
+
+<h2>Nueva Orden de Servicio</h2>
+
+<form asp-action="Crear" method="post">
+
+    <div class="mb-3">
+        <label>Número</label>
+        <input asp-for="Orden.NumeroOrden" class="form-control" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label>Cliente</label>
+        <select asp-for="Orden.ClienteId"
+                asp-items="Model.Clientes"
+                class="form-select">
+            <option value="">Seleccione...</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Equipo</label>
+        <select asp-for="Orden.EquipoId"
+                asp-items="Model.Equipos"
+                class="form-select">
+            <option value="">Seleccione...</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Técnico</label>
+        <select asp-for="Orden.TecnicoId"
+                asp-items="Model.Tecnicos"
+                class="form-select">
+            <option value="">Seleccione...</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Estado</label>
+        <select asp-for="Orden.EstadoReparacionId"
+                asp-items="Model.Estados"
+                class="form-select">
+            <option value="">Seleccione...</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Falla Reportada</label>
+        <textarea asp-for="Orden.FallaReportada"
+                  class="form-control"></textarea>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <label>Mano Obra</label>
+            <input asp-for="Orden.CostoManoObra"
+                   id="mano"
+                   class="form-control" />
+        </div>
+
+        <div class="col-md-4">
+            <label>Repuestos</label>
+            <input asp-for="Orden.CostoRepuestos"
+                   id="repuestos"
+                   class="form-control" />
+        </div>
+
+        <div class="col-md-4">
+            <label>Total</label>
+            <input asp-for="Orden.TotalCobrado"
+                   id="total"
+                   readonly
+                   class="form-control" />
+        </div>
+
+    </div>
+
+    <br />
+
+    <button class="btn btn-success">
+        Guardar Orden
+    </button>
+
+</form>
+
+<script>
+
+    document.getElementById("mano").addEventListener("input", calcular);
+    document.getElementById("repuestos").addEventListener("input", calcular);
+
+    function calcular(){
+
+    let mano=parseFloat(document.getElementById("mano").value)||0;
+
+    let rep=parseFloat(document.getElementById("repuestos").value)||0;
+
+    document.getElementById("total").value=mano+rep;
+
+    }
+
+</script>

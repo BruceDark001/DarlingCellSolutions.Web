@@ -1,107 +1,61 @@
-﻿@{
-    ViewData["Title"] = "Dashboard";
-}
+﻿@model DarlingCellSolutions.Web.Models.DashboardViewModel
 
-<div class="container-fluid">
+<h2 class="mb-4">Dashboard</h2>
 
-    <h2 class="mb-4">
-        Bienvenido a Darling Cell Solutions
-    </h2>
+<div class="row">
 
-
-    <div class="row">
-
-
-        <div class="col-md-3">
-
-            <div class="card shadow p-3 mb-4">
-
-                <h5>
-                    👥 Clientes
-                </h5>
-
-                <p>
-                    Gestionar clientes registrados
-                </p>
-
-                <a asp-controller="Clientes"
-                   asp-action="Index"
-                   class="btn btn-primary">
-                    Ir a Clientes
-                </a>
-
+    <div class="col-md-4 mb-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5>Clientes</h5>
+                <h2>@Model.TotalClientes</h2>
             </div>
-
         </div>
-
-
-
-        <div class="col-md-3">
-
-            <div class="card shadow p-3 mb-4">
-
-                <h5>
-                    📦 Inventario
-                </h5>
-
-                <p>
-                    Productos y stock
-                </p>
-
-                <button class="btn btn-success">
-                    Próximamente
-                </button>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="col-md-3">
-
-            <div class="card shadow p-3 mb-4">
-
-                <h5>
-                    🔧 Reparaciones
-                </h5>
-
-                <p>
-                    Órdenes de servicio técnico
-                </p>
-
-                <button class="btn btn-warning">
-                    Próximamente
-                </button>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="col-md-3">
-
-            <div class="card shadow p-3 mb-4">
-
-                <h5>
-                    💰 Ventas
-                </h5>
-
-                <p>
-                    Ventas y facturación
-                </p>
-
-                <button class="btn btn-danger">
-                    Próximamente
-                </button>
-
-            </div>
-
-        </div>
-
-
     </div>
 
+    <div class="col-md-4 mb-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h5>Productos</h5>
+                <h2>@Model.TotalProductos</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card bg-warning text-dark">
+            <div class="card-body">
+                <h5>Órdenes</h5>
+                <h2>@Model.TotalOrdenes</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <h5>Ventas</h5>
+                <h2>@Model.TotalVentas</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card bg-danger text-white">
+            <div class="card-body">
+                <h5>Stock Bajo</h5>
+                <h2>@Model.StockBajo</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card bg-dark text-white">
+            <div class="card-body">
+                <h5>Ingresos</h5>
+                <h2>S/. @Model.IngresosTotales.ToString("N2")</h2>
+            </div>
+        </div>
+    </div>
 
 </div>

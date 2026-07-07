@@ -16,12 +16,22 @@ public class OrdenServicioRepository : IOrdenServicioRepository
 
     public async Task<IEnumerable<OrdenServicio>> ObtenerTodos()
     {
-        return await _context.OrdenesServicio.ToListAsync();
+        return await _context.OrdenesServicio
+            .Include(o => o.Cliente)
+            .Include(o => o.Equipo)
+            .Include(o => o.Tecnico)
+            .Include(o => o.EstadoReparacion)
+            .ToListAsync();
     }
 
     public async Task<OrdenServicio?> ObtenerPorId(int id)
     {
-        return await _context.OrdenesServicio.FindAsync(id);
+        return await _context.OrdenesServicio
+            .Include(o => o.Cliente)
+            .Include(o => o.Equipo)
+            .Include(o => o.Tecnico)
+            .Include(o => o.EstadoReparacion)
+            .FirstOrDefaultAsync(o => o.Id == id);
     }
 
     public async Task Agregar(OrdenServicio orden)

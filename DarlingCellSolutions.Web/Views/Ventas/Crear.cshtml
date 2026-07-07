@@ -1,0 +1,377 @@
+﻿@model DarlingCellSolutions.Web.Models.VentaViewModel
+
+@{
+    ViewData["Title"] = "Nueva Venta";
+}
+
+<h2>Nueva Venta</h2>
+
+<form asp-action="Crear" method="post">
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <label>N° Comprobante</label>
+            <input asp-for="Venta.NumeroComprobante" class="form-control" readonly />
+        </div>
+
+        <div class="col-md-4">
+            <label>Cliente</label>
+            <select asp-for="Venta.ClienteId" class="form-select">
+                <option value="">Seleccione...</option>
+
+                @foreach (var c in Model.Clientes)
+                {
+                    <option value="@c.Value">@c.Text</option>
+                }
+
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label>Orden Servicio</label>
+            <select asp-for="Venta.OrdenServicioId" class="form-select">
+                <option value="">Sin Orden</option>
+
+                @foreach (var o in Model.Ordenes)
+                {
+                    <option value="@o.Value">@o.Text</option>
+                }
+
+            </select>
+        </div>
+
+    </div>
+
+    <hr />
+
+    <h4>Agregar Producto</h4>
+
+    <div class="row">
+
+        <div class="col-md-5">
+
+            <label>Producto</label>
+
+            <select id="producto" class="form-select">
+
+                <option value="">Seleccione...</option>
+
+                @foreach (var p in Model.Productos)
+                {
+                    <option
+                        value="@p.Id"
+                        data-precio="@p.Precio"
+                        data-stock="@p.Stock">
+
+                        @p.Nombre (Stock: @p.Stock)
+
+                    </option>
+                }
+
+            </select>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <label>Precio</label>
+
+            <input
+                id="precio"
+                class="form-control"
+                readonly />
+
+        </div>
+
+        <div class="col-md-2">
+
+            <label>Cantidad</label>
+
+            <input
+                id="cantidad"
+                type="number"
+                value="1"
+                min="1"
+                class="form-control"/>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <label>Subtotal</label>
+
+            <input
+                id="subtotal"
+                class="form-control"
+                readonly />
+
+        </div>
+
+        <div class="col-md-1 d-grid">
+
+            <label>&nbsp;</label>
+
+            <button
+                type="button"
+                id="agregar"
+                class="btn btn-success">
+
+                +
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <table class="table table-bordered" id="tabla">
+
+        <thead>
+
+        <tr>
+
+            <th>Producto</th>
+
+            <th width="120">Precio</th>
+
+            <th width="100">Cantidad</th>
+
+            <th width="120">Subtotal</th>
+
+            <th width="70"></th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        </tbody>
+
+    </table>
+
+    <div class="row justify-content-end">
+
+        <div class="col-md-3">
+
+            <label>SubTotal</label>
+
+            <input asp-for="Venta.SubTotal"
+                   id="txtSubTotal"
+                   class="form-control"
+                   readonly />
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <div class="row justify-content-end">
+
+        <div class="col-md-3">
+
+            <label>IGV (18%)</label>
+
+            <input asp-for="Venta.Igv"
+                   id="txtIgv"
+                   class="form-control"
+                   readonly />
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <div class="row justify-content-end">
+
+        <div class="col-md-3">
+
+            <label>Total</label>
+
+            <input asp-for="Venta.Total"
+                   id="txtTotal"
+                   class="form-control fw-bold"
+                   readonly />
+
+        </div>
+
+    </div>
+
+    <div id="detallesContainer"></div>
+
+    <br />
+
+    <div class="d-flex gap-2">
+
+        <button type="submit"
+                class="btn btn-primary">
+            Guardar Venta
+        </button>
+
+        <a asp-action="Index"
+           class="btn btn-secondary">
+            Cancelar
+        </a>
+
+    </div>
+
+</form>
+
+@section Scripts{
+
+    <script>
+
+        let detalles = [];
+
+        const producto = document.getElementById("producto");
+        const precio = document.getElementById("precio");
+        const cantidad = document.getElementById("cantidad");
+        const subtotal = document.getElementById("subtotal");
+
+        producto.addEventListener("change", actualizarDatos);
+        cantidad.addEventListener("input", actualizarSubtotal);
+
+        function actualizarDatos(){
+
+            let opcion = producto.options[producto.selectedIndex];
+
+            if(opcion.value==""){
+                precio.value="";
+                subtotal.value="";
+                return;
+            }
+
+            precio.value = parseFloat(opcion.dataset.precio).toFixed(2);
+
+            actualizarSubtotal();
+        }
+
+        function actualizarSubtotal(){
+
+            let p = parseFloat(precio.value)||0;
+
+            let c = parseInt(cantidad.value)||0;
+
+            subtotal.value = (p*c).toFixed(2);
+
+        }
+
+        document.getElementById("agregar").addEventListener("click",function(){
+
+            let opcion = producto.options[producto.selectedIndex];
+
+            if(opcion.value==""){
+
+                alert("Seleccione un producto");
+
+                return;
+
+            }
+
+            let item={
+
+                productoId:parseInt(opcion.value),
+
+                nombre:opcion.text,
+
+                precio:parseFloat(precio.value),
+
+                cantidad:parseInt(cantidad.value),
+
+                subtotal:parseFloat(subtotal.value)
+
+            };
+
+            detalles.push(item);
+
+            renderTabla();
+
+        });
+
+        function renderTabla(){
+
+            let tbody=document.querySelector("#tabla tbody");
+
+            tbody.innerHTML="";
+
+            let hidden=document.getElementById("detallesContainer");
+
+            hidden.innerHTML="";
+
+            let total=0;
+
+            detalles.forEach((d,index)=>{
+
+                total+=d.subtotal;
+
+                tbody.innerHTML+=`
+
+                <tr>
+
+                    <td>${d.nombre}</td>
+
+                    <td>${d.precio.toFixed(2)}</td>
+
+                    <td>${d.cantidad}</td>
+
+                    <td>${d.subtotal.toFixed(2)}</td>
+
+                    <td>
+
+                        <button
+                            type="button"
+                            class="btn btn-danger btn-sm"
+                            onclick="eliminar(${index})">
+
+                            X
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                `;
+
+                hidden.innerHTML+=`
+
+        <input type="hidden" name="Detalles[${index}].ProductoId" value="${d.productoId}" />
+
+        <input type="hidden" name="Detalles[${index}].Cantidad" value="${d.cantidad}" />
+
+        <input type="hidden" name="Detalles[${index}].Precio" value="${d.precio}" />
+
+        <input type="hidden" name="Detalles[${index}].SubTotal" value="${d.subtotal}" />
+
+        `;
+
+            });
+
+            let igv=total*0.18;
+
+            let final=total+igv;
+
+            document.getElementById("txtSubTotal").value=total.toFixed(2);
+
+            document.getElementById("txtIgv").value=igv.toFixed(2);
+
+            document.getElementById("txtTotal").value=final.toFixed(2);
+
+        }
+
+        function eliminar(i){
+
+            detalles.splice(i,1);
+
+            renderTabla();
+
+        }
+
+    </script>
+
+}
