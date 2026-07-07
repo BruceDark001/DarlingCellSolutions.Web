@@ -20,6 +20,17 @@ public class ClientesController : Controller
         return View(clientes);
     }
 
+    // DETALLES
+    public async Task<IActionResult> Detalles(int id)
+    {
+        var cliente = await _clienteRepository.ObtenerPorId(id);
+
+        if (cliente == null)
+            return NotFound();
+
+        return View(cliente);
+    }
+
     // CREAR
     public IActionResult Crear()
     {
@@ -33,6 +44,8 @@ public class ClientesController : Controller
             return View(cliente);
 
         await _clienteRepository.Agregar(cliente);
+
+        TempData["Success"] = "Cliente registrado correctamente.";
 
         return RedirectToAction(nameof(Index));
     }
@@ -56,6 +69,8 @@ public class ClientesController : Controller
 
         await _clienteRepository.Actualizar(cliente);
 
+        TempData["Success"] = "Cliente actualizado correctamente.";
+
         return RedirectToAction(nameof(Index));
     }
 
@@ -63,6 +78,8 @@ public class ClientesController : Controller
     public async Task<IActionResult> Eliminar(int id)
     {
         await _clienteRepository.Eliminar(id);
+
+        TempData["Success"] = "Cliente eliminado correctamente.";
 
         return RedirectToAction(nameof(Index));
     }

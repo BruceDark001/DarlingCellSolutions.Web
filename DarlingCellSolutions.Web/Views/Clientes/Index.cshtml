@@ -3,66 +3,164 @@
 @{
     ViewData["Title"] = "Clientes";
 }
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
 
-<h2>Clientes</h2>
+        @TempData["Success"]
 
-<a asp-action="Crear" class="btn btn-success mb-3">
-    Nuevo Cliente
-</a>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+        </button>
 
-<table class="table table-bordered table-hover">
+    </div>
+}
 
-    <thead class="table-dark">
+<div class="card shadow">
 
-        <tr>
+    <div class="card-header bg-primary text-white">
 
-            <th>DNI</th>
+        <div class="row align-items-center">
 
-            <th>Nombres</th>
+            <div class="col-md-6">
 
-            <th>Apellidos</th>
+                <h3 class="mb-0">
+                    Gestión de Clientes
+                </h3>
 
-            <th>Teléfono</th>
+            </div>
 
-            <th>Acciones</th>
+            <div class="col-md-6 text-end">
 
-        </tr>
+                <a asp-action="Crear"
+                   class="btn btn-light">
 
-    </thead>
+                    ➕ Nuevo Cliente
 
-    <tbody>
+                </a>
 
-        @foreach (var item in Model)
-        {
-            <tr>
+            </div>
 
-                <td>@item.Dni</td>
+        </div>
 
-                <td>@item.Nombres</td>
+    </div>
 
-                <td>@item.Apellidos</td>
 
-                <td>@item.Telefono</td>
+    <div class="card-body">
 
-                <td>
+        <div class="row mb-3">
 
-                    <a asp-action="Editar"
-                       asp-route-id="@item.Id"
-                       class="btn btn-warning btn-sm">
-                        Editar
-                    </a>
+            <div class="col-md-4">
 
-                    <a asp-action="Eliminar"
-                       asp-route-id="@item.Id"
-                       class="btn btn-danger btn-sm">
-                        Eliminar
-                    </a>
+                <input type="text"
+                       id="buscarCliente"
+                       class="form-control"
+                       placeholder="Buscar por DNI o Nombre..." />
 
-                </td>
+            </div>
 
-            </tr>
-        }
+        </div>
 
-    </tbody>
 
-</table>
+        <table class="table table-striped table-hover"
+               id="tablaClientes">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>DNI</th>
+
+                    <th>Nombres</th>
+
+                    <th>Apellidos</th>
+
+                    <th>Teléfono</th>
+
+                    <th class="text-center">
+                        Acciones
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.Dni</td>
+
+                        <td>@item.Nombres</td>
+
+                        <td>@item.Apellidos</td>
+
+                        <td>@item.Telefono</td>
+
+                        <td class="text-center">
+
+                            <a asp-action="Editar"
+                               asp-route-id="@item.Id"
+                               class="btn btn-warning btn-sm">
+
+                                ✏ Editar
+
+                            </a>
+
+                            <a asp-action="Detalles"
+                               asp-route-id="@item.Id"
+                               class="btn btn-info btn-sm">
+
+                                👁 Ver
+
+                            </a>
+
+                            <a asp-action="Eliminar"
+                               asp-route-id="@item.Id"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('¿Desea eliminar este cliente?');">
+
+                                🗑 Eliminar
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+        document.getElementById("buscarCliente").addEventListener("keyup", function () {
+
+            let filtro = this.value.toLowerCase();
+
+            let filas = document.querySelectorAll("#tablaClientes tbody tr");
+
+            filas.forEach(function(fila){
+
+                let texto = fila.innerText.toLowerCase();
+
+                fila.style.display = texto.includes(filtro) ? "" : "none";
+
+            });
+
+        });
+
+    </script>
+
+}
