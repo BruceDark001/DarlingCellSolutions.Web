@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="DarlingCellSolutions.Application/DarlingCellSolutions.Application.csproj" />
+  <Project Path="DarlingCellSolutions.Domain/DarlingCellSolutions.Domain.csproj" />
+  <Project Path="DarlingCellSolutions.Infrastructure/DarlingCellSolutions.Infrastructure.csproj" />
+  <Project Path="DarlingCellSolutions.Web/DarlingCellSolutions.Web.csproj" />
+</Solution>
