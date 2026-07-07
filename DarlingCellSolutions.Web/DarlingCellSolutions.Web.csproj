@@ -8,12 +8,21 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DarlingCellSolutions.Application\DarlingCellSolutions.Application.csproj" />
+    <ProjectReference Include="..\DarlingCellSolutions.Infrastructure\DarlingCellSolutions.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Utilidades\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.28" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.28">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

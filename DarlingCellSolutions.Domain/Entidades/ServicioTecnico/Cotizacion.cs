@@ -13,7 +13,7 @@ public class Cotizacion : EntidadBase
 
     public string Descripcion { get; set; } = string.Empty;
 
-    public EstadoCotizacion Estado { get; set; } = EstadoCotizacion.Pendiente;
+    public EstadoCotizacion EstadoCotizacion { get; set; } = EstadoCotizacion.Pendiente;
 
     public DateTime Fecha { get; set; } = DateTime.Now;
 }

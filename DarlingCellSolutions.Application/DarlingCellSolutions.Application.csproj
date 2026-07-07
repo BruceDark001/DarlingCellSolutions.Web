@@ -12,9 +12,13 @@
 
   <ItemGroup>
     <Folder Include="DTOs\" />
-    <Folder Include="Interfaces\" />
+    <Folder Include="Interfaces\Repostiorios\" />
+    <Folder Include="Interfaces\Servicios\Clientes\" />
+    <Folder Include="Interfaces\Servicios\Inventarios\" />
+    <Folder Include="Interfaces\Servicios\Seguridad\" />
+    <Folder Include="Interfaces\Servicios\Ventas\" />
+    <Folder Include="Interfaces\Servicios\ServicioTecnico\" />
     <Folder Include="Validaciones\" />
-    <Folder Include="Servicios\" />
   </ItemGroup>
 
 </Project>

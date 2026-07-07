@@ -14,6 +14,8 @@ public class Cliente : EntidadBase
 
     public string Telefono { get; set; } = string.Empty;
 
+    public bool TieneGarantiaActiva { get; set; }
+
     public string? Correo { get; set; }
 
     public string? Direccion { get; set; }
