@@ -8,9 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Entidades\Configuracion\" />
-    <Folder Include="Entidades\Sistema\" />
-    <Folder Include="Entidades\Ventas\" />
-    <Folder Include="Entidades\ServicioTecnico\" />
     <Folder Include="Interfaces\" />
     <Folder Include="ObjetosValor\" />
   </ItemGroup>
