@@ -14,4 +14,5 @@ public class Rol : EntidadBase
     public ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
 
     public ICollection<RolPermiso> RolesPermisos { get; set; } = new List<RolPermiso>();
+
 }
