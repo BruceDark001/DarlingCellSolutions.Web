@@ -1,0 +1,68 @@
+﻿@model IEnumerable<DarlingCellSolutions.Domain.Entidades.Clientes.Cliente>
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<h2>Clientes</h2>
+
+<a asp-action="Crear" class="btn btn-success mb-3">
+    Nuevo Cliente
+</a>
+
+<table class="table table-bordered table-hover">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>DNI</th>
+
+            <th>Nombres</th>
+
+            <th>Apellidos</th>
+
+            <th>Teléfono</th>
+
+            <th>Acciones</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.Dni</td>
+
+                <td>@item.Nombres</td>
+
+                <td>@item.Apellidos</td>
+
+                <td>@item.Telefono</td>
+
+                <td>
+
+                    <a asp-action="Editar"
+                       asp-route-id="@item.Id"
+                       class="btn btn-warning btn-sm">
+                        Editar
+                    </a>
+
+                    <a asp-action="Eliminar"
+                       asp-route-id="@item.Id"
+                       class="btn btn-danger btn-sm">
+                        Eliminar
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

@@ -1,4 +1,5 @@
-﻿using DarlingCellSolutions.Application.Interfaces;
+﻿using DarlingCellSolutions.Infrastructure.Persistencia.Repositorios.Clientes;
+using DarlingCellSolutions.Application.Interfaces;
 using DarlingCellSolutions.Infrastructure.Persistencia.Repositorios.Seguridad;
 using DarlingCellSolutions.Infrastructure.Persistencia.Contexto;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ public static class DependencyInjection
         });
 
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+        services.AddScoped<IClienteRepository, ClienteRepository>();
 
         return services;
     }

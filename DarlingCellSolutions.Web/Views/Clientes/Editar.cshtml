@@ -1,0 +1,85 @@
+﻿@model DarlingCellSolutions.Domain.Entidades.Clientes.Cliente
+
+@{
+    ViewData["Title"] = "Editar Cliente";
+}
+
+<h2>Editar Cliente</h2>
+
+<hr />
+
+<form asp-action="Editar">
+
+    <input asp-for="Id" type="hidden" />
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <label>DNI</label>
+
+            <input asp-for="Dni" class="form-control" />
+
+        </div>
+
+        <div class="col-md-6">
+
+            <label>Teléfono</label>
+
+            <input asp-for="Telefono" class="form-control" />
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <label>Nombres</label>
+
+            <input asp-for="Nombres" class="form-control" />
+
+        </div>
+
+        <div class="col-md-6">
+
+            <label>Apellidos</label>
+
+            <input asp-for="Apellidos" class="form-control" />
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <label>Correo</label>
+
+    <input asp-for="Correo" class="form-control" />
+
+    <br />
+
+    <label>Dirección</label>
+
+    <input asp-for="Direccion" class="form-control" />
+
+    <br />
+
+    <label>Observaciones</label>
+
+    <textarea asp-for="Observaciones" class="form-control"></textarea>
+
+    <br />
+
+    <button class="btn btn-primary">
+        Actualizar
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Cancelar
+    </a>
+
+</form>
