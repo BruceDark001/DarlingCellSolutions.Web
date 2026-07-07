@@ -1,5 +1,6 @@
 ﻿using DarlingCellSolutions.Domain.Entidades.Base;
 
+namespace DarlingCellSolutions.Domain.Entidades.ServicioTecnico;
 public class OrdenServicio : EntidadBase
 {
     public int Id { get; set; }
