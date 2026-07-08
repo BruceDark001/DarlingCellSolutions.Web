@@ -15,6 +15,7 @@
     <Folder Include="Areas\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Utilidades\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>

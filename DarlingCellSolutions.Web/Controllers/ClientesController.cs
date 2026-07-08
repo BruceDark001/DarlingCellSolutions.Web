@@ -1,9 +1,11 @@
 ﻿using DarlingCellSolutions.Application.Interfaces;
 using DarlingCellSolutions.Domain.Entidades.Clientes;
+using DarlingCellSolutions.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DarlingCellSolutions.Web.Controllers;
 
+[SessionAuthorize]
 public class ClientesController : Controller
 {
     private readonly IClienteRepository _clienteRepository;

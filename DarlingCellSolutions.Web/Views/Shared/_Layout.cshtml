@@ -1,162 +1,103 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
-
 <head>
 
     <meta charset="utf-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>
-        @ViewData["Title"] - Darling Cell Solutions
-    </title>
-
+    <title>@ViewData["Title"] - Darling Cell Solutions</title>
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-
     <link rel="stylesheet" href="~/css/site.css" />
+
 </head>
 
 <body>
 
-    <div class="d-flex">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-        <!-- MENU LATERAL -->
+        <div class="container">
 
-        <div class="bg-dark text-white p-3"
-             style="width:250px; min-height:100vh;">
+            <a class="navbar-brand"
+               asp-controller="Home"
+               asp-action="Index">
+                Darling Cell Solutions
+            </a>
 
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menu">
 
-            <h4 class="text-center mb-4">
-                📱 Darling Cell
-            </h4>
+                <span class="navbar-toggler-icon"></span>
 
-            <hr />
+            </button>
 
-            <ul class="nav flex-column">
+            <div class="collapse navbar-collapse" id="menu">
 
-                <li class="nav-item mb-2">
+                <ul class="navbar-nav ms-auto">
 
-                    <a class="nav-link text-white"
-                       asp-controller="Dashboard"
-                       asp-action="Index">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-controller="Home"
+                           asp-action="Index">
+                            Inicio
+                        </a>
+                    </li>
 
-                        🏠 Dashboard
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-controller="Home"
+                           asp-action="Index">
+                            Productos
+                        </a>
+                    </li>
 
-                    </a>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-controller="Home"
+                           asp-action="Servicios">
+                            Servicios
+                        </a>
+                    </li>
 
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-controller="Home"
+                           asp-action="Nosotros">
+                            Nosotros
+                        </a>
+                    </li>
 
-                <li class="nav-item mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-controller="Home"
+                           asp-action="Contacto">
+                            Contacto
+                        </a>
+                    </li>
 
-                    <a class="nav-link text-white"
-                       asp-controller="Clientes"
-                       asp-action="Index">
+                    <li class="nav-item">
+                        <a class="btn btn-primary ms-3"
+                           asp-controller="Login"
+                           asp-action="Index">
+                            Iniciar sesión
+                        </a>
+                    </li>
 
-                        👥 Clientes
+                </ul>
 
-                    </a>
-
-                </li>
-
-
-                <li class="nav-item mb-2">
-
-                    <a class="nav-link text-white"
-                       href="#">
-
-                        📦 Inventario
-
-                    </a>
-
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="OrdenesServicio" asp-action="Index">
-                        Órdenes de Servicio 🔧
-                    </a>
-                </li>
-
-                <li class="nav-item mb-2">
-
-                    <a class="nav-link text-white"
-                       href="#">
-
-                        🔧 Servicio Técnico
-
-                    </a>
-
-                </li>
-
-                <li class="nav-item mb-2">
-
-                    <a class="nav-link text-white"
-                       href="#">
-                        💰 Ventas
-                    </a>
-                </li>
-
-                <li class="nav-item mb-2">
-
-                    <a class="nav-link text-white"
-                       href="#">
-
-                        👤 Usuarios
-
-                    </a>
-
-                </li>
-
-
-
-            </ul>
-
+            </div>
 
         </div>
 
+    </nav>
 
-
-
-        <!-- CONTENIDO -->
-
-        <div class="flex-grow-1">
-
-
-            <nav class="navbar navbar-light bg-light shadow-sm">
-
-
-                <div class="container-fluid">
-
-
-                    <span class="navbar-brand">
-
-                        Sistema de Gestión
-                    </span>
-                    <span>
-
-                        Administrador
-                    </span>
-                </div>
-            </nav>
-
-            <main class="p-4">
-
-
-                @RenderBody()
-
-            </main>
-        </div>
-
-    </div>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @RenderBody()
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 
-
 </body>
-
-
 </html>

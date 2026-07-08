@@ -1,12 +1,14 @@
 ﻿using DarlingCellSolutions.Application.Interfaces;
 using DarlingCellSolutions.Domain.Entidades.Inventario;
 using DarlingCellSolutions.Infrastructure.Persistencia.Contexto;
+using DarlingCellSolutions.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace DarlingCellSolutions.Web.Controllers;
 
+[SessionAuthorize]
 public class ProductosController : Controller
 {
     private readonly IProductoRepository _productoRepository;

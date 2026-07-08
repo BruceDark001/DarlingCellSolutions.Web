@@ -1,12 +1,14 @@
 ﻿using DarlingCellSolutions.Application.Interfaces;
 using DarlingCellSolutions.Domain.Entidades.Clientes;
 using DarlingCellSolutions.Infrastructure.Persistencia.Contexto;
+using DarlingCellSolutions.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace DarlingCellSolutions.Web.Controllers;
 
+[SessionAuthorize]
 public class EquiposController : Controller
 {
     private readonly IEquipoRepository _equipoRepository;

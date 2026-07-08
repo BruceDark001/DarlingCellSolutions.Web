@@ -1,6 +1,7 @@
 ﻿using DarlingCellSolutions.Application.Interfaces;
 using DarlingCellSolutions.Domain.Entidades.Ventas;
 using DarlingCellSolutions.Infrastructure.Persistencia.Contexto;
+using DarlingCellSolutions.Web.Filters;
 using DarlingCellSolutions.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DarlingCellSolutions.Web.Controllers;
 
+[SessionAuthorize]
 public class VentasController : Controller
 {
     private readonly IVentaRepository _ventaRepository;

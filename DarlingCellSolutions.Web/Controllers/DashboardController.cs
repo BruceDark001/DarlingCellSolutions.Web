@@ -1,10 +1,12 @@
 ﻿using DarlingCellSolutions.Infrastructure.Persistencia.Contexto;
+using DarlingCellSolutions.Web.Filters;
 using DarlingCellSolutions.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DarlingCellSolutions.Web.Controllers;
 
+[SessionAuthorize]
 public class DashboardController : Controller
 {
     private readonly DarlingCellSolutionsDbContext _context;

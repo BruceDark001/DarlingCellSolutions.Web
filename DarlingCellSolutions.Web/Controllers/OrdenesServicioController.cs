@@ -1,15 +1,17 @@
 ﻿using DarlingCellSolutions.Application.Interfaces;
-using DarlingCellSolutions.Domain.Entidades.ServicioTecnico;
 using DarlingCellSolutions.Domain.Entidades.Clientes;
 using DarlingCellSolutions.Domain.Entidades.Seguridad;
-using DarlingCellSolutions.Web.Models;
+using DarlingCellSolutions.Domain.Entidades.ServicioTecnico;
 using DarlingCellSolutions.Infrastructure.Persistencia.Contexto;
+using DarlingCellSolutions.Web.Filters;
+using DarlingCellSolutions.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace DarlingCellSolutions.Web.Controllers;
 
+[SessionAuthorize]
 public class OrdenesServicioController : Controller
 {
     private readonly IOrdenServicioRepository _repository;

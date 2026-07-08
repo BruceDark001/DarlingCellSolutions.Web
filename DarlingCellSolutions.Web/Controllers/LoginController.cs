@@ -37,7 +37,7 @@ public class LoginController : Controller
         HttpContext.Session.SetString("Nombre", usuario.Nombres);
         HttpContext.Session.SetString("Rol", usuario.Rol.Nombre);
 
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Index", "Dashboard");
     }
 
     public IActionResult Logout()

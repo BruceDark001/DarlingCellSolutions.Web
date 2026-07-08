@@ -1,25 +1,35 @@
 ﻿@{
     Layout = "_AdminLayout";
 }
-@model IEnumerable<DarlingCellSolutions.Domain.Entidades.Clientes.Equipo>
 
-<h2>Equipos</h2>
+@model IEnumerable<DarlingCellSolutions.Domain.Entidades.Seguridad.Usuario>
 
-<a asp-action="Crear" class="btn btn-success mb-3">
-    Nuevo Equipo
+<h2>Usuarios</h2>
+
+<a asp-action="Crear" class="btn btn-primary mb-3">
+    Nuevo Usuario
 </a>
 
 <table class="table table-bordered table-hover">
 
     <thead class="table-dark">
+
         <tr>
-            <th>Cliente</th>
-            <th>Marca</th>
-            <th>Tipo</th>
-            <th>Modelo</th>
-            <th>IMEI</th>
-            <th>Acciones</th>
+
+            <th>Nombres</th>
+
+            <th>Apellidos</th>
+
+            <th>Usuario</th>
+
+            <th>Correo</th>
+
+            <th>Rol</th>
+
+            <th width="180"></th>
+
         </tr>
+
     </thead>
 
     <tbody>
@@ -28,15 +38,15 @@
         {
             <tr>
 
-                <td>@item.Cliente.Nombres</td>
+                <td>@item.Nombres</td>
 
-                <td>@item.Marca.Nombre</td>
+                <td>@item.Apellidos</td>
 
-                <td>@item.TipoEquipo.Nombre</td>
+                <td>@item.NombreUsuario</td>
 
-                <td>@item.Modelo</td>
+                <td>@item.Correo</td>
 
-                <td>@item.IMEI</td>
+                <td>@item.Rol.Nombre</td>
 
                 <td>
 
@@ -50,7 +60,8 @@
 
                     <a asp-action="Eliminar"
                        asp-route-id="@item.Id"
-                       class="btn btn-danger btn-sm">
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('¿Eliminar usuario?')">
 
                         Eliminar
 
